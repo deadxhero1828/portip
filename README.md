@@ -19,14 +19,14 @@ add_port() {
     fi
     
     local random_port
-    random_port=$(shuf -i 1024-65535 -n 1)
+    random_port=$(shuf -i 25565-35565 -n 1)
     
     ssh -o StrictHostKeyChecking=no -f -N -R ${random_port}:localhost:${local_port} serveo.net > /dev/null &
     ssh_pid=$!
     
     echo "${random_port}:${local_port}" >> $PORTS_FILE
     
-    echo "${local_port} is now on 138.68.79.95:${random_port}"
+    echo "${local_port} is now on 86.68.79.95:${random_port}"
 }
 
 remove_port() {
@@ -76,7 +76,7 @@ list_ports() {
     while IFS= read -r line; do
         random_port=$(echo $line | cut -d':' -f1)
         local_port=$(echo $line | cut -d':' -f2)
-        echo "Local port ${local_port} -> Public port ${random_port} (138.68.79.95)"
+        echo "Local port ${local_port} -> Public port ${random_port} (86.68.79.95)"
     done < $PORTS_FILE
 }
 
@@ -137,7 +137,7 @@ Once installed, you can use the `portip` command to manage your port forwarding.
     portip list
     ```
 
-    This will display all current port mappings in the format: `Local port [local_port] -> Public port [random_port] (138.68.79.95)`.
+    This will display all current port mappings in the format: `Local port [local_port] -> Public port [random_port] (86.68.79.95)`.
 
 ## Notes
 

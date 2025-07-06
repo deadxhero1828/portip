@@ -10,14 +10,14 @@ add_port() {
     fi
     
     local random_port
-    random_port=$(shuf -i 1024-65535 -n 1)
+    random_port=$(shuf -i 25565-35565 -n 1)
     
     ssh -o StrictHostKeyChecking=no -f -N -R ${random_port}:localhost:${local_port} serveo.net > /dev/null &
     ssh_pid=$!
     
     echo "${random_port}:${local_port}" >> $PORTS_FILE
     
-    echo "${local_port} is now on 138.68.79.95:${random_port}"
+    echo "${local_port} is now on 86.68.79.95:${random_port}"
 }
 
 remove_port() {
